@@ -1,0 +1,105 @@
+.mainbox{
+    background: #fcfcfc;
+    border: 1px solid #f1f1f1;
+    width: 640px;
+    padding: 0px 20px 100px;
+    margin: 40px auto 0px;
+    border-radius: 10px;
+}
+.mymodi{
+    height: 80px;
+    padding-top: 20px;
+    position: relative;
+}
+/*톱니바퀴*/
+.settings{
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    right: 0px;
+    }
+
+
+.profileimg{
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    border: 1.4px solid lightgray;
+}
+.profileimgbox{
+    height: 150px;
+}
+.mynamemail{
+    height:60px;
+}
+.myaction{
+    justify-content: space-evenly;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 60px;
+    padding: 0px 15px;
+    border-top: 1px solid lightgray;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.username{
+    font-size:21px;
+    font-weight:bold;
+}
+.useremail{
+    color: rgb(116, 116, 123);
+    font-size: 13px;
+    }
+
+.bar{
+    background-color: rgb(193 193 193);
+    width: 1px;
+    height: 12px;
+}
+
+/* 수정 페이지 */
+.formbox{
+    padding: 20px 50px
+}
+
+.signup_title {
+    height: 80px;
+    font-size: 25px;
+    line-height: 80px;
+    font-weight: bold;
+    color: #f2b90a;
+    font-family: "yg-jalnan";
+}
+
+.signup_submit_1,
+.signup_submit_2 {
+    width: 470px;
+    height: 50px;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "yg-jalnan";
+    }
+.signup_submit_1{
+    background-color: #f2b90a;
+    color: white;
+}
+.signup_submit_2{
+    background-color: gray;
+    color: #eaeaea;
+}
+
+.signup_info_form {
+     font-size: 14px;
+     color: #424242;
+     margin: 0px 0px 15px 0px;
+}
+.removeform{
+    padding-left:50px;
+}

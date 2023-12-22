@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/detail.css" />
+  <title>Document</title>
+</head>
+
+<body>
+<header>
+  <div class="boxalign">
+    <h1 class="logo">
+      <a href="/main"><img src="/image/Logo.png" alt="상위로고" /></a>
+    </h1>
+
+    <nav>
+      <ul>
+        <li><a href="/main">영화</a></li>
+        <li class="genre_button">
+          <a href="/main">장르</a>
+        </li>
+        <li><a href="#">찜한목록</a></li>
+        <div class="genre_pop">
+          <ul>
+            <li><a href="#">전체</a></li>
+            <li><a href="#">공포</a></li>
+            <li><a href="#">스릴러</a></li>
+            <li><a href="#">액션</a></li>
+            <li><a href="#">기타</a></li>
+            <li><a href="#">로맨스</a></li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+
+    <div class="right_icon">
+      <div>
+        <input
+                class="search"
+                type="text"
+                placeholder="보고싶은 영화를 검색해보세요."
+        />
+        <img
+                class="search_icon"
+                src="/image/search_icon.png"
+                alt="검색찾기 아이콘"
+        />
+      </div>
+
+      <a href="#" class="login_button">로그인</a>
+      <a href="#" class="join_button">회원가입</a>
+    </div>
+  </div>
+</header>
+
+<section class="Body-wrap">
+  <section class="body-top">
+    <div>
+      <div class="top-image">
+        <div id="top-text">
+          <div class="boxalign top-textarea" th:each="movie : ${movie}">
+            <span class="movie_title" th:text="${movie.movieName}">제목</span> &nbsp
+            <span class="sub_title" th:text="${movie.movieName}">부제목</span>
+            <div class="movie_genre" th:text="${movie.movieRelease} + '·' + ${movie.movieType}">개봉일·장르</div>
+
+            <div th:text="${movie.movieTime}">러닝타임</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="body-middle boxalign">
+    <div class="poster_top">
+      <div name="Start-image" >⭐</div>
+      <div name="Movie-avg-rate" th:text="${movie.movieRating}">${총평점}</div>
+    </div>
+
+    <div>
+      <div class="poster_main">
+        <div class="Poster-image" name="Poster-image" th:each="list : ${list}">
+          <img
+
+                  th:src="${list.movieImg}"
+                  alt=""
+                  style="height: 570px; max-width: 100%"
+          />
+        </div>
+
+        <div class="intro" name="intro" style="margin-left: 30px">
+          <section style="font-size: 20px">
+            <div>
+              <div class="rating_title">
+                <h1>평가하기</h1>
+                <div>리뷰작성자 "(리뷰total count)" 명</div>
+              </div>
+
+              <div class="rating_section">
+                <fieldset class="rate">
+                  <input
+                          type="radio"
+                          id="rating5"
+                          name="rating"
+                          value="5"
+                  />
+                  <label for="rating5" title="5점"></label>
+
+                  <input
+                          type="radio"
+                          id="rating4"
+                          name="rating"
+                          value="4"
+                  />
+                  <label for="rating4" title="4점"></label>
+
+                  <input
+                          type="radio"
+                          id="rating3"
+                          name="rating"
+                          value="3"
+                  />
+                  <label for="rating3" title="3점"></label>
+
+                  <input
+                          type="radio"
+                          id="rating2"
+                          name="rating"
+                          value="2"
+                  />
+                  <label for="rating2" title="2점"></label>
+
+                  <input
+                          type="radio"
+                          id="rating1"
+                          name="rating"
+                          value="1"
+                  />
+                  <label for="rating1" title="1점"></label>
+                </fieldset>
+
+                <div class="review_intro_button" style="text-align: right">
+                  <a>리뷰쓰기</a>
+                  <button class="steamed">
+                    <img src="/image/heart.png" alt="" />
+                  </button>
+                  <button class="share">
+                    <img src="/image/share.png" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <section>
+            <div class="movie_introduce" th:text="${movie.movieInfo}" >${영화설명}</div>
+          </section>
+
+          <br />
+          <div class="review_input_form">
+                <textarea
+                        type="text"
+                        placeholder="내용을 작성해주세요"
+                ></textarea>
+            <input type="submit" class="review_submit" value="작성하기" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="directer boxalign" name="directer & acter">
+    <h3>출연/제작</h3>
+    <div>
+      <ul class="acter-info">
+        <li>
+          <div class="info_group">
+            <div class="picture" name="picture"></div>
+            <div>
+              <div class="info">
+                <div>감독</div>
+                <div th:text="${movie.movieDic}">이름(m.dir)</div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info_group">
+            <div class="picture" name="picture"></div>
+            <div>
+              <div class="info">
+                <div>배우</div>
+                <div>이름(m.act)</div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info_group">
+            <div name="picture" class="picture"></div>
+            <div>
+              <div class="info">
+                <div>배우</div>
+                <div>이름(m.act)</div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info_group">
+            <div name="picture" class="picture"></div>
+            <div>
+              <div class="info">
+                <div>배우</div>
+                <div>이름(m.act)</div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="body-bottom boxalign">
+    <div>
+      <h2>코멘트</h2>
+      <div>리뷰total(Count.review)</div>
+    </div>
+
+    <div>
+      <ul class="review_form">
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <textarea name="" id="" cols="30" rows="10"> </textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div class="review_user_info">
+              <div>UserName</div>
+              <div class="review_star">
+                <img
+                        class="start-rating"
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiM0QTRBNEEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDE3Ljk4bC02LjAxNSA0LjM5MmMtLjUwOC4zNzItMS4xOTQtLjEyNi0uOTk4LS43MjVsMi4zMTctNy4wODEtNi4wMzUtNC4zNjdjLS41MS0uMzY5LS4yNDctMS4xNzUuMzgyLTEuMTc0bDcuNDQ3LjAxNiAyLjI4Ni03LjA5MWMuMTkyLS42IDEuMDQtLjYgMS4yMzMgMGwyLjI4NiA3LjA5IDcuNDQ3LS4wMTVjLjYyOS0uMDAxLjg5LjgwNS4zOCAxLjE3NGwtNi4wMzMgNC4zNjcgMi4zMTYgNy4wOGMuMTk2LjYtLjQ5IDEuMDk4LS45OTkuNzI2TDEyIDE3Ljk4eiIvPgo8L3N2Zz4K"
+                        alt=""
+                />
+                <span>(m.rate)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <textarea name="" id="" cols="30" rows="10"> </textarea>
+          </div>
+          <div class="like_total">
+            <div>
+              <button class="like_icon">
+                <img src="/image/like.png" alt="" /></button
+              ><span>{Like Count}</span>
+            </div>
+            <div>좋아요</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<footer>
+  <div class="boxalign">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="javascript:;">회사소개</a></li>
+        <li><a href="javascript:;">고객센터</a></li>
+        <li><a href="javascript:;">개인정보취급방침</a></li>
+        <li><a href="javascript:;">이용약관</a></li>
+        <li><a href="javascript:;">광고 및 제휴</a></li>
+        <li><a href="javascript:;">사이트맵</a></li>
+      </ul>
+    </div>
+
+    <div class="footer_logo">
+      <a href="javascript:;">
+        <img src="/image/footer_logo.png" alt="하단로고" />
+      </a>
+    </div>
+
+    <div class="copyright">
+      <div>
+        사업자등록번호 : 105-512-478235 | 통신판매업번호 :
+        제2015-서울영등포-4527호
+        <p>(c) MOVIE Co., LTD | 053-888-7754</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/reset.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/join.css"/>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+<div class="l_options">
+    <div class="l_settions">
+        <div class="l_settingcloseBtn">
+            <div>로그인</div>
+            <button class="close">&times;</button>
+        </div>
+        <div class="l_settingtitle">
+            <form action="" method="POST">
+
+                <input type="text" name="username" placeholder="아이디를 입력하세요." required>
+
+                <input type="password" name="password" placeholder="비밀번호를 입력하세요." required>
+
+                <button class="loginBtn" type="submit">로그인</button>
+            </form>
+            <a href="/member/join" class="regiBtn">회원가입</a>
+            <a href="#" class="forget">아이디•비밀번호를 잊으셨나요?</a>
+        </div>
+    </div>
+</div>
+<header>
+    <div class="boxalign">
+        <h1 class="logo">
+            <a href="/main"><img src="/image/Logo.png" alt="상위로고"/></a>
+        </h1>
+
+        <nav>
+            <ul>
+                <li><a href="#">영화</a></li>
+                <li class="genre_button">
+                    <a href="#">장르</a>
+                </li>
+                <li><a href="#">찜한목록</a></li>
+                <div class="genre_pop">
+                    <ul>
+                        <li><a href="#">전체</a></li>
+                        <li><a href="#">공포</a></li>
+                        <li><a href="#">스릴러</a></li>
+                        <li><a href="#">액션</a></li>
+                        <li><a href="#">기타</a></li>
+                        <li><a href="#">로맨스</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="right_icon">
+            <div>
+                <input class="search" type="text" placeholder="보고싶은 영화를 검색해보세요."/>
+                <img class="search_icon" src="/image/search_icon.png" alt="검색찾기 아이콘"/>
+            </div>
+
+            <a href="#" class="login_button">로그인</a>
+            <a href="#" class="join_button">회원가입</a>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="boxalign">
+        <div style="display: flex; justify-content: center; margin: 30px auto;">
+            <span style="color: orange; font-size:22px; "><b>회원가입</b></span>
+        </div>
+    </div>
+
+    <form action="/member/join" method="post">
+        <div class="join_form" style="background-color:rgb(233, 231, 231); height: 410px;">
+            <div class="content">
+                <span class="content1">아이디</span>
+                <input type="text" class="box_st1" name="userId"><br>
+                <span id="userIdError" class="error"></span>
+            </div>
+            <div class="content">
+                <span class="content1">이름</span>
+                <input type="text" class="box_st1" name="userName"><br>
+                <span id="userNameError" class="error"></span>
+            </div>
+            <div class="content">
+                <span class="content1">비밀번호</span>
+                <input type="password" class="box_st1" name="userPw"><br>
+                <span id="userPwError" class="error"></span>
+            </div>
+            <div class="content">
+                <span class="content1">비밀번호 확인</span>
+                <input type="password" class="box_st1" name="userPwCheck"><br>
+                <span id="userPwError1" class="error"></span>
+            </div>
+            <div class="content">
+                <span class="content1">이메일</span>
+                <input type="email" class="box_st1" name="userEmail" id="userEmail">
+                <button type="button" id="emailVerification" style="cursor:pointer;">인증</button><br>
+                <span id="userEmailError" class="error"></span>
+            </div>
+            <div class="content" id="verificationCode" style="display: none;">
+                <span class="content1">인증번호</span>
+                <input type="password" class="box_st1" id="verificationInput">
+                <button type="button" id="submitVerification" style="cursor:pointer;">확인</button><br>
+                <span id="userEmailError2" class="error"></span>
+            </div>
+            <div class="content">
+                <span class="content1">생년월일</span>
+                <input type="text" class="box_st1" name="userBirthday"><br>
+                <span id="userBirthdayError" class="error"></span>
+            </div>
+        </div>
+
+        <div class="boxalign polBox">
+
+            <div class="agrbox">
+                <p style="font-size:25px; font-weight: bold;">약관동의</p>
+                <br>
+                <p style="font-size: 13px; color: gray; line-height: 25px;">필수 동의를 누르지 않을 경우 서비스 가입이 불가하며,<br>
+                    마케팅 동의를 선택하지 않을 경우 혜택에서 제외 될 수 있습니다.
+                </p>
+            </div>
+
+            <div class="agreebox1">
+                <input type="checkbox"> 전체약관동의
+            </div>
+            <div class="agrbox2">
+                <div class="agreebox2">
+                    <input type="checkbox"> <span class="span1">[필수]</span> <span
+                        style="display: inline-block; height: 15px; width : 300px;">이용약관</span>
+                    <button class="conbtn" type="button">내용보기</button>
+                </div>
+                <div class="agreebox2">
+                    <input type="checkbox"> <span class="span1">[필수]</span> <span
+                        style="display: inline-block; height: 15px; width : 300px;">개인정보 수집 이용동의</span>
+                    <button class="conbtn" type="button">내용보기</button>
+                </div>
+                <div class="agreebox3">
+                    <input type="checkbox"><span class="span2">[선택]</span> <span
+                        style="display: inline-block; height: 15px; width : 300px;">이벤트 및 혜택
+                이용동의</span>
+                    <button class="conbtn" type="button">내용보기</button>
+                </div>
+                <div class="agreebox3">
+                    <input type="checkbox"><span class="span2">[선택] </span><span
+                        style="display: inline-block; height: 15px; width : 300px;"> 맞춤 마케팅을 위한
+                정보수집,이용동의</span>
+                    <button class="conbtn" type="button">내용보기</button>
+                </div>
+                <div style="display: flex; justify-content: center; margin: 30px auto;">
+                    <button type="submit" class="joinbtn" style="cursor:pointer;">회원가입</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<footer>
+    <div class="boxalign">
+        <div class="footer_nav">
+            <ul>
+                <li><a href="javascript:;">회사소개</a></li>
+                <li><a href="javascript:;">고객센터</a></li>
+                <li><a href="javascript:;">개인정보취급방침</a></li>
+                <li><a href="javascript:;">이용약관</a></li>
+                <li><a href="javascript:;">광고 및 제휴</a></li>
+                <li><a href="javascript:;">사이트맵</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_logo">
+            <a href="javascript:;">
+                <img src="/image/footer_logo.png" alt="하단로고"/>
+            </a>
+        </div>
+
+        <div class="copyright">
+            <div>
+                사업자등록번호 : 105-512-478235 | 통신판매업번호 :
+                제2015-서울영등포-4527호
+                <p>(c) MOVIE Co., LTD | 053-888-7754</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/index.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/join.js"></script>
+
+</body>
+
+</html>

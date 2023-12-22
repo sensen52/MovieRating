@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/mypage.css" />
+    <title>Document</title>
+</head>
+<body>
+<div class="l_options">
+    <div class="l_settions">
+        <div class="l_settingcloseBtn">
+            <div>로그인</div>
+            <button class="close">&times;</button>
+        </div>
+        <div class="l_settingtitle">
+            <form action="/login" method="POST">
+
+                <input type="text" name="username" placeholder="아이디를 입력하세요." required>
+
+                <input type="password" name="password" placeholder="비밀번호를 입력하세요."  required>
+
+                <button class="loginBtn" type="submit">로그인</button>
+            </form>
+            <a href="/member/join" class="regiBtn">회원가입</a>
+            <a href="#" class="forget">아이디•비밀번호를 잊으셨나요?</a>
+        </div>
+    </div>
+</div>
+<header>
+    <div class="boxalign">
+        <h1 class="logo">
+            <a th:href="@{/main}"><img src="/image/Logo.png" alt="상위로고" /></a>
+        </h1>
+
+        <nav>
+            <ul>
+                <li><a href="#">영화</a></li>
+                <li class="genre_button">
+                    <a href="#">장르</a>
+                </li>
+                <li><a href="#">찜한목록</a></li>
+                <div class="genre_pop">
+                    <ul>
+                        <li><a href="#">전체</a></li>
+                        <li><a href="#">공포</a></li>
+                        <li><a href="#">스릴러</a></li>
+                        <li><a href="#">액션</a></li>
+                        <li><a href="#">기타</a></li>
+                        <li><a href="#">로맨스</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="right_icon">
+            <form name="searchForm" >
+                <span class="bunch">
+                    <select name="type" id="sFld">
+                      <option value="tw" >전체</option>
+                      <option value="t" >제목</option>
+                      <option value="w">장르</option>
+                      <input type="text" name="keyword" id="sStr"  placeholder="보고싶은 영화를 검색해보세요">
+                    </select>
+                </span>
+            </form>
+
+            <div class="rightbox">
+                <a th:if="${#authorization.expression('isAnonymous()')}" href="#" class="login_button">로그인</a>
+                <a th:if="${#authorization.expression('isAnonymous()')}" href="/member/join" class="join_button">회원가입</a>
+                <div th:if="${#authorization.expression('!isAnonymous()')}" class="rightbox">
+                    <div>
+                        <a href="/member/mypage"><span class="" th:text="${#authentication.name}" style="color:#f2b90a;"></span>님</a>
+                    </div>
+                    <a href="/logout" class="join_button">로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="main">
+    <div class="boxalign">
+        <div class="mainbox">
+            <div class="mymodi">
+                <a href="/member/mypagemodi"><img class="settings" src="/image/gear.png"></a>
+            </div>
+            <div class="profile">
+                <div class="profileimgbox"><img class="profileimg" src="/image/basicimage.jpg"></div>
+                <div class="mynamemail">
+                    <div><span class="username" th:text="${userDTO.userName}"></span></div>
+                    <div><span class="useremail" th:text="${userDTO.userEmail}"></span></div>
+                </div>
+            </div>
+            <div class="myaction">
+                <div>
+                    평가
+                </div>
+                <div class="bar"></div>
+                <div>
+                    코멘트
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="boxalign">
+        <div class="footer_nav">
+            <ul>
+                <li><a href="javascript:;">회사소개</a></li>
+                <li><a href="javascript:;">고객센터</a></li>
+                <li><a href="javascript:;">개인정보취급방침</a></li>
+                <li><a href="javascript:;">이용약관</a></li>
+                <li><a href="javascript:;">광고 및 제휴</a></li>
+                <li><a href="javascript:;">사이트맵</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_logo">
+            <a href="javascript:;">
+                <img src="/image/footer_logo.png" alt="하단로고" />
+            </a>
+        </div>
+
+        <div class="copyright">
+            <div>
+                사업자등록번호 : 105-512-478235 | 통신판매업번호 :
+                제2015-서울영등포-4527호
+                <p>(c) MOVIE Co., LTD | 053-888-7754</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/index.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>

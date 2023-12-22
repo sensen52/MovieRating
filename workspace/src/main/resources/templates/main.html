@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .active {
+            background-color: #f2b90a; /* 원하는 색깔로 변경해주세요 */
+            color: #ffffff; /* 원하는 텍스트 색깔로 변경해주세요 */
+            /* 필요한 다른 스타일 속성들을 추가할 수 있습니다 */
+            border:1px solid #f2b90a;
+        }
+    </style>
+</head>
+<body>
+<div class="l_options">
+    <div class="l_settions">
+        <div class="l_settingcloseBtn">
+            <div>로그인</div>
+            <button class="close">&times;</button>
+        </div>
+        <div class="l_settingtitle">
+            <form action="/login" method="POST">
+
+                <input type="text" name="username" placeholder="아이디를 입력하세요." required>
+
+                <input type="password" name="password" placeholder="비밀번호를 입력하세요."  required>
+
+                <button class="loginBtn" type="submit">로그인</button>
+            </form>
+            <a href="/member/join" class="regiBtn">회원가입</a>
+            <a href="#" class="forget">아이디•비밀번호를 잊으셨나요?</a>
+        </div>
+    </div>
+</div>
+<header>
+    <div class="boxalign">
+        <h1 class="logo">
+            <a th:href="@{/main}"><img src="/image/Logo.png" alt="상위로고" /></a>
+        </h1>
+
+        <nav>
+            <ul>
+                <li><a href="#">영화</a></li>
+                <li class="genre_button">
+                    <a href="#">장르</a>
+                </li>
+                <li><a href="#">찜한목록</a></li>
+                <div class="genre_pop">
+                    <ul>
+                        <li><a href="/main?movietype=전체">전체</a></li>
+                        <li><a href="/main?movietype=공포">공포</a></li>
+                        <li><a href="/main?movietype=스릴러">스릴러</a></li>
+                        <li><a href="/main?movietype=액션">액션</a></li>
+                        <li><a href="/main?movietype=기타">기타</a></li>
+                        <li><a href="/main?movietype=로맨스">로맨스</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="right_icon">
+            <form name="searchForm" th:action="@{/main}" method="get" id="searchForm">
+                <span class="bunch">
+                    <select name="type" id="sFld">
+                      <option value="tw" th:selected="${search.type == 'tw'}">전체</option>
+                      <option value="t" th:selected="${search.type == 't'}">제목</option>
+                      <option value="w" th:selected="${search.type == 'w'}">장르</option>
+                      <input type="text" name="keyword" id="sStr" th:value="${search.keyword}" placeholder="보고싶은 영화를 검색해보세요">
+                    </select>
+                </span>
+            </form>
+
+            <div class="rightbox">
+                <a th:if="${#authorization.expression('isAnonymous()')}" href="#" class="login_button">로그인</a>
+                <a th:if="${#authorization.expression('isAnonymous()')}" href="/member/join" class="join_button">회원가입</a>
+                <div th:if="${#authorization.expression('!isAnonymous()')}" class="rightbox">
+
+                    <a href="/member/mypage"><span class="" th:text="${#authentication.name}" style="color:#f2b90a;"></span>님</a>
+
+                    <a href="/logout" class="join_button" onclick="return confirmLogout();">로그아웃</a>
+                </div>
+                <!--            <a th:if="${#authorization.expression('!isAnonymous()')}" href="/logout" class="link">로그아웃</a>-->
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="main">
+    <div class="boxalign">
+        <div class="orderby">
+            <div class="arrayO">
+                <div class="total_movie_cnt" th:text="'총 영화수 : '+${totalMovieCount}+'개'">영화수</div>
+                <select id="orderBySelect" name="orderBy">
+                    <option value="recommend" th:selected="${orderBy == 'recommend'}">추천순</option>
+                    <option value="alphabetical" th:selected="${orderBy == 'alphabetical'}">가나다순</option>
+                    <option value="newworks" th:selected="${orderBy == 'newworks'}">신작순</option>
+                </select>
+            </div>
+        </div>
+        <div class="showMovie" >
+            <ul>
+                <li th:each="list : ${list}">
+                    <a  th:href="'/detail/' + ${list.movieId}">
+                        <div class="showimg">
+                            <figure>
+                                <img class="showPoster" th:src="${list.movieImg}" style="width:100%;">
+                                <figcaption>
+                                    <div class="desc">
+                                        <div style="color: #f2b90a; font-weight: bold; font-size: 15px;" >개봉일</div>
+                                        <span style="font-size: 18px;" th:text="${list.movieRelease}">2022.10.12</span>
+                                    </div>
+                                    <div class="desc">
+                                        <div style="color: #f2b90a; font-weight: bold; font-size: 15px;">장르</div>
+                                        <span style="font-size: 18px;" th:text="${list.movieType}"></span>
+                                    </div>
+                                    <div class="desc">
+                                        <div style="color: #f2b90a; font-weight: bold; font-size: 15px;" >감독</div>
+                                        <span style="font-size: 18px;" th:text="${list.movieDic}">댄 콴, 다니엘 쉐이너트  </span>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="showTitle" th:text="${list.movieName}">에브리씽 에브리웨어 올 앳 원스</div>
+                        <div class="showRating" th:text="'★'+${list.movieRating}">★${평균별점수}</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<div class="paging">
+    <a th:if="${pageMaker.prev}" th:href="@{/main(page=${pageMaker.startPage-1}, amount=${pageMaker.criteria.amount}, type=${search.type}, keyword=${search.keyword}, orderBy=${orderBy})}"
+       class="pagebtn"> <
+    </a>
+
+    <th:block th:each="pageNum : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+        <a th:href="@{/main(page=${pageNum}, amount=${pageMaker.criteria.amount}, type=${search.type}, keyword=${search.keyword}, orderBy=${orderBy})}"
+           class="pagebtn" th:classappend="${pageNum == pageMaker.criteria.pageNum ? 'active' : ''}">
+            <span th:text="${pageNum}"></span>
+        </a>
+    </th:block>
+
+    <a th:if="${pageMaker.next}" th:href="@{/main(page=${pageMaker.endPage+1}, amount=${pageMaker.criteria.amount}, type=${search.type}, keyword=${search.keyword}, orderBy=${orderBy})}"
+       class="pagebtn">
+        >
+    </a>
+</div>
+
+<footer>
+    <div class="boxalign">
+        <div class="footer_nav">
+            <ul>
+                <li><a href="javascript:;">회사소개</a></li>
+                <li><a href="javascript:;">고객센터</a></li>
+                <li><a href="javascript:;">개인정보취급방침</a></li>
+                <li><a href="javascript:;">이용약관</a></li>
+                <li><a href="javascript:;">광고 및 제휴</a></li>
+                <li><a href="javascript:;">사이트맵</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_logo">
+            <a href="javascript:;">
+                <img src="/image/footer_logo.png" alt="하단로고" />
+            </a>
+        </div>
+
+        <div class="copyright">
+            <div>
+                사업자등록번호 : 105-512-478235 | 통신판매업번호 :
+                제2015-서울영등포-4527호
+                <p>(c) MOVIE Co., LTD | 053-888-7754</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/index.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

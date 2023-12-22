@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "yg-jalnan";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  font-size: 12px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+#wrap {
+}
+ol,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  vertical-align: bottom;
+  width: 100%;
+  max-width: 100%;
+}
+address {
+  font-style: normal;
+}
+table {
+  border-collapse: collapse;
+}
+button {
+  border: none;
+  background: transparent;
+
+  font-size: 100%;
+  color: inherit;
+}
+img {
+  vertical-align: bottom;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.boxalign {
+  max-width: 1300px;
+  margin: 0 auto;
+}

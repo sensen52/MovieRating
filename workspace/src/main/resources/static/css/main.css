@@ -1,0 +1,154 @@
+.orderby{
+    height: 130px;
+
+    /* border: 1px solid black; */
+    padding-top:80px;
+    justify-content: flex-end; /* 가로 오른쪽 정렬 설정 */
+}
+.arrayO{
+    display: flex;
+    width:1200px
+    align-items: flex-end;
+    margin-right: 10px; /* 원하는 간격으로 조절 가능 */
+    justify-content:space-between;
+}
+.search_icon{
+position:absolute;
+right:10px;
+}
+.bunch{
+height:30px;}
+
+#sFld{
+outline:none;
+border:none;
+color: #f2b90a;
+border:1px solid #f2b90a;
+width:80px;
+height:40px;
+margin-right:10px;
+font-weight:bold;
+}
+#sFld > option{
+width:50px;
+height:40px;
+}
+.bunch > input::placeholder{
+font-weight:bold;
+color:white;
+}
+.bunch > input{
+color:white;
+outline:none;
+padding-left:5px;
+background:#f2b90a;
+border:none;
+width:250px;
+height:40px;
+}
+.showMovie > ul{
+width:1300px;
+display:flex;
+height:700px;
+flex-wrap:wrap;
+justify-content:start;
+gap:30px;
+}
+.showMovie > ul > li{
+width:18%;
+
+}
+.total_movie_cnt{
+font-size:20px;
+font-weight:bold;
+color:#000d;
+
+}
+.orderby>.arrayO> select{
+    width: 150px; /* select 요소의 너비를 조절 */
+    height: 35px;
+    font-size: 20px; /* 글자 크기를 조절*/
+    text-align: center;
+}
+
+.showimg{
+    height:300px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+.showTitle{
+    font-weight:bold;
+    color: rgb(31, 31, 31);
+    font-size: 15px;
+    /* font-weight: 400; */
+    letter-spacing: -0.5px;
+}
+.showRating{
+    color: #74747b;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+}
+
+/* 페이징 */
+.paging{
+    display: flex;
+    height: 100px;
+    /* border: 1px solid black; */
+    justify-content: center;
+    gap: 10px; 
+    padding-top: 10px;
+}
+.paging>.pagebtn {
+    /* color: orange; */
+}
+/* 영화 간략소개 */
+.showMovie a{
+    display: block;
+    overflow: hidden;
+}
+.showMovie figure > img{
+    width:;
+}
+.showMovie figure{
+    width: 100%; height: 100%;
+    position: relative;
+}
+.showMovie figcaption{
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top: 0; left: 0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    padding-top: 30px;
+    opacity: 0; /* 처음엔 안보이고 */
+    transition: 0.4s;
+}
+.showMovie a :hover figcaption,
+.showMovie a:focus figcaption{
+    opacity: 1;
+}
+.main{
+height:900px;
+}
+.desc{
+    margin-bottom: 20px;
+}
+
+.pagebtn{
+text-align: center;
+width:50px;
+height:50px;
+line-height:50px;
+font-size:18px;
+font-weight:bold;
+border:1px solid #000;
+border-radius:50px;
+
+}
+.pagebtn:active {
+        background: black;
+        color: white;
+ }

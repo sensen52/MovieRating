@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<header>
+    <div class="boxalign">
+        <h1 class="logo">
+            <a href="#"><img src="/image/Logo.png" alt="상위로고" /></a>
+        </h1>
+
+        <nav>
+            <ul>
+                <li><a href="#">영화</a></li>
+                <li class="genre_button">
+                    <a href="#">장르</a>
+                </li>
+                <li><a href="#">찜한목록</a></li>
+                <div class="genre_pop">
+                    <ul>
+                        <li><a href="#">전체</a></li>
+                        <li><a href="#">공포</a></li>
+                        <li><a href="#">스릴러</a></li>
+                        <li><a href="#">액션</a></li>
+                        <li><a href="#">기타</a></li>
+                        <li><a href="#">로맨스</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="right_icon">
+            <div>
+                <input
+                        class="search"
+                        type="text"
+                        placeholder="보고싶은 영화를 검색해보세요."
+                />
+                <img
+                        class="search_icon"
+                        src="/image/search_icon.png"
+                        alt="검색찾기 아이콘"
+                />
+            </div>
+
+            <a href="#" class="login_button">로그인</a>
+            <a href="/member/join" class="join_button">회원가입</a>
+        </div>
+    </div>
+</header>
